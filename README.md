@@ -1,34 +1,40 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg)
 
-# What is Tiny Tapeout?
+# Worm in a Maze
 
-TinyTapeout is an educational project that aims to make it easier and cheaper than ever to get your digital designs manufactured on a real chip!
+Worm in a Maze is a digital electronic project submitted to [Tiny Tapeout](https://tinytapeout.com/) that hows an animation of a segmented worm travels along a pseudo-random path. The worm is shown on the seven-segment LED of the Tiny Tapeout breakout board and moves through the figure-eight course.
 
-Go to https://tinytapeout.com for instructions!
+The circuit was designed using the Wokwi website and can be seen at https://wokwi.com/projects/348381622440034899.
 
-## How to change the Wokwi project
+![screen](https://user-images.githubusercontent.com/54959859/203157420-dc917ee6-395d-45fd-9586-eaab93f7827c.png)
 
-Edit the [info.yaml](info.yaml) and change the wokwi_id to match your project.
+## Using
 
-## How to enable the GitHub actions to build the ASIC files
+Click the "play" button on the Wokwi page to start the simulation of the circuit. Make sure
+that the slide switch above the "Digital Input" block is in the left position, selecting the 25 Hz clock.
+Depending on the speed of your machine, the animation might run somewhat slower than real-time.
+(There are a lot of logic gates in the circuit to be simulated.)
 
-Please see the instructions for:
+To chenge the controls, clock on the red 8-position DIP switch to change settings as detailed below.
+The 1-8 keyboard keys can also be used to change switch positions once the switch device is selected.
 
-* [Enabling GitHub Actions](https://tinytapeout.com/faq/#when-i-commit-my-change-the-gds-action-isnt-running)
-* [Enabling GitHub Pages](https://tinytapeout.com/faq/#my-github-action-is-failing-on-the-pages-part)
+## Controls
 
-## How does it work?
+Worm in a Maze includes digital logic to detect when the state of the display is invalid
+and automatically generates a reset signal when this is detected. This auto-reset can be
+disabled by changing digital input 1 (DIP switch #2) to the On position. DIP switch #3 is
+a manual reset. Move it to the On position and then back to Off to force a reset.
 
-When you edit the info.yaml to choose a different ID, the [GitHub Action](.github/workflows/gds.yaml) will fetch the digital netlist of your design from Wokwi.
+Worm in a Maze was designed to operate the maximum clock divider of 255 available on the
+breakout board. With an expected serial bit rate of 12500 Hz and thus a clock of 6250 Hz,
+digital input 0 will see a clock rate of about 25 Hz. A set of logic gates further divides
+this clock rate by 16 so that the LED display updates at a rate of between once and twice
+per second. DIP switch #4 ("turbo switch") bypasses this clock divider, primarily for
+convenience when single-stepping the circuit for debugging or demonstrating.
 
-After that, the action uses the open source ASIC tool called [OpenLane](https://www.zerotoasiccourse.com/terminology/openlane/) to build the files needed to fabricate an ASIC.
+DIP switch #5 selects the number of worm segments shown on the LED display. In the Off
+position, two segments are shown. In the On position, three segments are shown.
+Depending on [persistence of vision](https://en.wikipedia.org/wiki/Persistence_of_vision)
+and the clock rate available and perhaps some other factors, one or the other might be more
+effective and enjoyable when the actual hardware is available.
 
-## Resources
-
-* [FAQ](https://tinytapeout.com/faq/)
-* [Digital design lessons](https://tinytapeout.com/digital_design/)
-* [Join the community](https://discord.gg/rPK2nSjxy8)
-
-## What next?
-
-* Share your GDS on Twitter, tag it [#tinytapeout](https://twitter.com/hashtag/tinytapeout?src=hashtag_click) and [link me](https://twitter.com/matthewvenn)!
