@@ -3,7 +3,7 @@
 # Worm in a Maze
 
 Worm in a Maze is a digital electronic project submitted to [Tiny Tapeout](https://tinytapeout.com/)
-hat shows an animation of a segmented worm traveling on a pseudo-random path. The worm is shown
+that shows an animation of a segmented worm traveling on a pseudo-random path. The worm is shown
 on the seven-segment LED of the Tiny Tapeout breakout board and moves through a figure-eight course.
 
 The circuit was designed using the Wokwi website and can be seen at https://wokwi.com/projects/348381622440034899.
